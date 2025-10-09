@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="#F4F6F8"
+    tools:context=".SignUpActivity">
+
+    <!-- Email -->
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:background="#FFFFFF"
+        android:textColor="#21323A"
+        android:textColorHint="#6D7A80"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Password -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password (at least 6 characters)"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="#FFFFFF"
+        android:textColor="#21323A"
+        android:textColorHint="#6D7A80"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginBottom="24dp" />
+
+    <EditText
+        android:id="@+id/etAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="#FFFFFF"
+        android:textColor="#21323A"
+        android:textColorHint="#6D7A80"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Account Type -->
+    <RadioGroup
+        android:id="@+id/rgAccountType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp">
+
+        <RadioButton
+            android:id="@+id/rbJobSeeker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Job Seeker"
+            android:textSize="16sp"
+            android:textColor="#21323A"
+            android:buttonTint="#0D47A1"
+            android:paddingEnd="16dp"/>
+
+        <RadioButton
+            android:id="@+id/rbEmployer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Employer"
+            android:textSize="16sp"
+            android:textColor="#21323A"
+            android:buttonTint="#0D47A1"/>
+    </RadioGroup>
+
+    <!-- Sign Up Button -->
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#0D47A1"
+        android:padding="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Already have an account -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- النص الأسود -->
+        <TextView
+            android:id="@+id/tvNoAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account?"
+            android:textSize="14sp"
+            android:textColor="#21323A"
+            android:fontFamily="sans-serif" />
+
+        <!-- النص الأزرق والقابل للضغط -->
+        <TextView
+            android:id="@+id/tvSignUpRedirect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Log In"
+            android:textSize="14sp"
+            android:textColor="#0D47A1"
+            android:fontFamily="sans-serif"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+
+</LinearLayout>
