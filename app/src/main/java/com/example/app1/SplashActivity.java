@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,22 +15,25 @@ import static com.example.app1.FBRef.refUsers;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final long SPLASH_DELAY = 2700; // 2.7 ثانية
+    private static final long SPLASH_DELAY = 2700;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // تشغيل التأخير ثم التحقق من المستخدم على UI thread
-        new Handler(Looper.getMainLooper()).postDelayed(this::checkUser, SPLASH_DELAY);
+
+        DelayThread delayThread = new DelayThread();
+        Thread t = new Thread(delayThread);
+        t.start();
+
+
     }
 
     private void checkUser() {
         FirebaseUser currentUser = refAuth.getCurrentUser();
 
         if (currentUser != null) {
-            // المستخدم مسجل مسبقًا → جلب البيانات من Realtime Database
             refUsers.child(currentUser.getUid()).get().addOnSuccessListener(snapshot -> {
                 String accountType = snapshot.child("accountType").getValue(String.class);
 
@@ -38,19 +42,28 @@ public class SplashActivity extends AppCompatActivity {
                 } else if ("Employer".equals(accountType)) {
                     startActivity(new Intent(SplashActivity.this, MainEmployer.class));
                 } else {
-                    // إذا لم يوجد نوع الحساب، نرسل المستخدم للتسجيل
                     startActivity(new Intent(SplashActivity.this, SignUpActivity.class));
                 }
                 finish();
             }).addOnFailureListener(e -> {
-                // في حالة فشل جلب البيانات، نرسل للتسجيل
                 startActivity(new Intent(SplashActivity.this, SignUpActivity.class));
                 finish();
             });
         } else {
-            // المستخدم لم يسجل الدخول بعد → نرسل للتسجيل
             startActivity(new Intent(SplashActivity.this, SignUpActivity.class));
-            finish();
         }
     }
+    public class DelayThread implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(SPLASH_DELAY);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            checkUser();
+        }
+    }
+
 }

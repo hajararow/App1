@@ -20,7 +20,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onStart();
 
         boolean fromSignUp = getIntent().getBooleanExtra("fromSignUp", false);
-        if (fromSignUp) return; // إذا جاء من SignUp، لا نفحص تلقائيًا
+        if (fromSignUp) return;
 
         FirebaseUser currentUser = refAuth.getCurrentUser();
         if (currentUser != null) {

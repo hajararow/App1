@@ -11,7 +11,7 @@ import static com.example.app1.FBRef.refAuth;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText etPassword, etEmail, etAge;
+    EditText etPassword, etEmail;
     Button btnSignUp;
     TextView tvLoginRedirect;
     RadioGroup rgAccountType;
@@ -27,7 +27,6 @@ public class SignUpActivity extends AppCompatActivity {
     public void init() {
         etPassword = findViewById(R.id.etPassword);
         etEmail = findViewById(R.id.etEmail);
-        etAge = findViewById(R.id.etAge);
         btnSignUp = findViewById(R.id.btnSignUp);
         tvLoginRedirect = findViewById(R.id.tvSignUpRedirect);
 
@@ -37,20 +36,17 @@ public class SignUpActivity extends AppCompatActivity {
 
         btnSignUp.setOnClickListener(view -> registerUser());
 
-        // الانتقال إلى LogInActivity بدون فحص تلقائي
         tvLoginRedirect.setOnClickListener(view -> {
             Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
             intent.putExtra("fromSignUp", true);
             startActivity(intent);
         });
     }
-
     private void registerUser() {
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-        String age = etAge.getText().toString();
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty() || age.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -71,23 +67,30 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         String uid = refAuth.getCurrentUser().getUid();
-                        DatabaseReference refUsers = FBRef.refUsers;
 
                         HashMap<String, Object> userMap = new HashMap<>();
+                        userMap.put("uid", uid);
                         userMap.put("email", email);
-                        userMap.put("age", age);
                         userMap.put("accountType", accountType);
 
-                        refUsers.child(uid).setValue(userMap);
+                        FBRef.refUsers.child(uid).setValue(userMap)
+                                .addOnSuccessListener(unused -> {
+                                    Toast.makeText(SignUpActivity.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(SignUpActivity.this, "Account created", Toast.LENGTH_SHORT).show();
+                                    // الانتقال إلى صفحة تسجيل الدخول
+                                    Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
+                                    intent.putExtra("fromSignUp", true);
+                                    startActivity(intent);
+                                    finish();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(SignUpActivity.this, "Database error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
 
-                        Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
-                        intent.putExtra("fromSignUp", true);
-                        startActivity(intent);
-                        finish();
                     } else {
-                        Toast.makeText(SignUpActivity.this, "Sign up failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this,
+                                "Sign up failed: " + task.getException().getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }

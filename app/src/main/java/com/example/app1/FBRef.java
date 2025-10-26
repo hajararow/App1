@@ -5,9 +5,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FBRef {
-    // Firebase Authentication
     public static FirebaseAuth refAuth = FirebaseAuth.getInstance();
 
-    // Realtime Database Users reference
     public static DatabaseReference refUsers = FirebaseDatabase.getInstance().getReference("Users");
+
+    public static DatabaseReference refPosts = FirebaseDatabase.getInstance().getReference("Posts");
+    public static DatabaseReference refCategories = FirebaseDatabase.getInstance().getReference("Categories");
+
 }

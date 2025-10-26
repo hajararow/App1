@@ -1,128 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp"
     android:background="#F4F6F8"
-    tools:context=".SignUpActivity">
+    android:padding="24dp">
 
-    <!-- Email -->
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="12dp"
-        android:background="#FFFFFF"
-        android:textColor="#21323A"
-        android:textColorHint="#6D7A80"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-light"
-        android:layout_marginBottom="24dp" />
-
-    <!-- Password -->
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password (at least 6 characters)"
-        android:inputType="textPassword"
-        android:padding="12dp"
-        android:background="#FFFFFF"
-        android:textColor="#21323A"
-        android:textColorHint="#6D7A80"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-light"
-        android:layout_marginBottom="24dp" />
-
-    <EditText
-        android:id="@+id/etAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Age"
-        android:inputType="textPassword"
-        android:padding="12dp"
-        android:background="#FFFFFF"
-        android:textColor="#21323A"
-        android:textColorHint="#6D7A80"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-light"
-        android:layout_marginBottom="24dp" />
-
-    <!-- Account Type -->
-    <RadioGroup
-        android:id="@+id/rgAccountType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="24dp">
-
-        <RadioButton
-            android:id="@+id/rbJobSeeker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Job Seeker"
-            android:textSize="16sp"
-            android:textColor="#21323A"
-            android:buttonTint="#0D47A1"
-            android:paddingEnd="16dp"/>
-
-        <RadioButton
-            android:id="@+id/rbEmployer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Employer"
-            android:textSize="16sp"
-            android:textColor="#21323A"
-            android:buttonTint="#0D47A1"/>
-    </RadioGroup>
-
-    <!-- Sign Up Button -->
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#0D47A1"
-        android:padding="14dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
-
-    <!-- Already have an account -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-        <!-- النص الأسود -->
+        <!-- כותרת -->
         <TextView
-            android:id="@+id/tvNoAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account?"
-            android:textSize="14sp"
+            android:text="פרסום משרה"
+            android:textSize="22sp"
             android:textColor="#21323A"
-            android:fontFamily="sans-serif" />
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="20dp" />
 
-        <!-- النص الأزرق والقابل للضغط -->
+        <!-- גיל העובד -->
         <TextView
-            android:id="@+id/tvSignUpRedirect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Log In"
-            android:textSize="14sp"
-            android:textColor="#0D47A1"
-            android:fontFamily="sans-serif"
-            android:clickable="true"
-            android:focusable="true" />
-    </LinearLayout>
+            android:text="גיל העובד"
+            android:textColor="#21323A"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium" />
 
-</LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp" />
+
+        <!-- מיקום העבודה -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="מיקום העבודה"
+            android:textColor="#21323A"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_locations"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- סוג העבודה -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="סוג העבודה"
+            android:textColor="#21323A"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_job_types"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- סוג העסקה -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="סוג העסקה"
+            android:textColor="#21323A"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <Spinner
+            android:id="@+id/spinner_employment_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp" />
+
+        <!-- שכר -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="שכר"
+            android:textColor="#21323A"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <EditText
+            android:id="@+id/edit_salary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="הכנס את השכר בשקלים"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:textColor="#21323A"
+            android:textColorHint="#6D7A80"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- מידע נוסף -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="מידע נוסף"
+            android:textColor="#21323A"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <EditText
+            android:id="@+id/edit_additional_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="3"
+            android:hint="הכנס מידע נוסף במידת הצורך"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:textColor="#21323A"
+            android:textColorHint="#6D7A80"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- רשימת משרות זמינות -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="משרות זמינות"
+            android:textColor="#21323A"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_jobs"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false" />
+
+        <!-- כפתור פרסם -->
+        <Button
+            android:id="@+id/button_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="פרסם"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#0D47A1"
+            android:padding="14dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+</ScrollView>

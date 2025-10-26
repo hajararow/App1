@@ -1,10 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainEmployer">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- סינון לפי גיל -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="גיל העובד" />
+
+    <Spinner
+        android:id="@+id/spinner_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- רשימת מיקומי עבודה -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מיקום העבודה" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_locations"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"/>
+
+    <!-- רשימת סוגי עבודות -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="סוג העבודה" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_job_types"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"/>
+
+    <!-- סוג העסקה -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="סוג העסקה" />
+
+    <Spinner
+        android:id="@+id/spinner_employment_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- שדה שכר -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שכר" />
+
+    <EditText
+        android:id="@+id/edit_salary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="הכנס את השכר בשקלים" />
+
+    <!-- מידע נוסף -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מידע נוסף" />
+
+    <EditText
+        android:id="@+id/edit_additional_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:hint="הכנס מידע נוסף במידת הצורך" />
+
+    <!-- רשימת משרות זמינות -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="משרות זמינות"
+        android:textStyle="bold"
+        android:paddingTop="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_jobs"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"/>
+
+    <Button
+        android:id="@+id/button_post"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="פרסם"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

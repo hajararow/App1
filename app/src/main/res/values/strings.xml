@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">App1</string>
+
+        <!-- ...existing strings... -->
+
+    <string name="select_age">Select age requirement</string>
+    <string name="select_job_type">Select job type</string>
+
+    <string-array name="age_options">
+        <item>Any age</item>
+        <item>Above 18</item>
+        <item>Above 21</item>
+    </string-array>
+
+    <string-array name="job_types">
+        <item>Waiter</item>
+        <item>Construction worker</item>
+        <item>Translator</item>
+        <item>Graphic designer</item>
+        <item>Cybersecurity specialist</item>
+        <item>Other</item>
+    </string-array>
+
+
+
 </resources>
