@@ -274,9 +274,13 @@ public class MainEmployer extends AppCompatActivity {
                 Log.d(TAG,firebaseUser.getEmail() + " "+firebaseUser.getUid());
                 String uid = firebaseUser.getUid();
 
-                JobPost jobPost = new JobPost(age, region, city, jobType, hourlyRate, jobField, specificJob, additionalInfo, phone, uid);
 
-                FBRef.refPosts.child(jobPost.getUserId()).push().setValue(jobPost).addOnCompleteListener(new OnCompleteListener<Void>() {
+                String postKey = FBRef.refPosts.child(uid).push().getKey();
+
+                JobPost jobPost = new JobPost(age, region, city, jobType, hourlyRate, jobField, specificJob, additionalInfo, phone, postKey);
+
+
+                FBRef.refPosts.child(uid).child(postKey).setValue(jobPost).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())

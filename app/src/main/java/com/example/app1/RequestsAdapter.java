@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,13 +30,15 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder,int position) {
         RequestModel model = list.get(position);
 
-        holder.specificJob.setText("תפקיד: " + model.specificJob);
-        holder.city.setText("מיקום: " + model.city);
-        holder.hourlyRate.setText("שכר לשעה: " + model.hourlyRate);
-        holder.age.setText("פרטים נוספים: " + model.age);
+        holder.specificJob.setText("תפקיד: " + model.getSpecificJob());
+        holder.city.setText("מיקום: " + model.getCity());
+        holder.hourlyRate.setText("שכר לשעה: " + model.getHourlyRate());
+        holder.age.setText("פרטים נוספים: " + model.getAge());
+
+
     }
 
     @Override
@@ -43,9 +46,12 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
         return list.size();
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView specificJob, city, hourlyRate, age;
+        Button removePost;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,6 +60,16 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
             city = itemView.findViewById(R.id.text_city);
             hourlyRate = itemView.findViewById(R.id.edittext_hourly_rate);
             age = itemView.findViewById(R.id.text_age);
+            removePost = itemView.findViewById(R.id.remove_post);
+            removePost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MyRequestsActivity myRequestsActivity = (MyRequestsActivity)context;
+                    myRequestsActivity.delete(getBindingAdapterPosition());
+                }
+            });
+
+
         }
     }
 }

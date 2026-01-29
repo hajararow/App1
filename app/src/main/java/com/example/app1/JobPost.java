@@ -10,12 +10,12 @@ public class JobPost {
     private String specificJob;
     private String additionalInfo;
     private String phone;
-    private String userId; // لتحديد صاحب المنشور
+    private String postKey; // لتحديد صاحب المنشور
 
     public JobPost() {} // Firebase يحتاج الكونستركتور الفارغ
 
     public JobPost(String age, String region, String city, String jobType, String hourlyRate,
-                   String jobField, String specificJob, String additionalInfo, String phone, String userId) {
+                   String jobField, String specificJob, String additionalInfo, String phone, String postId) {
         this.age = age;
         this.region = region;
         this.city = city;
@@ -25,7 +25,7 @@ public class JobPost {
         this.specificJob = specificJob;
         this.additionalInfo = additionalInfo;
         this.phone = phone;
-        this.userId = userId;
+        this.postKey = postId;
 
     }
 
@@ -101,11 +101,11 @@ public class JobPost {
         this.phone = phone;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getPostKey() {
+        return postKey;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setPostKey(String postKey) {
+        this.postKey = postKey;
     }
 }
