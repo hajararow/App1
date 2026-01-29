@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_more"
+        android:icon="@android:drawable/ic_menu_more"
+        android:title="More"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/NewRequest"
+                android:icon="@android:drawable/ic_input_add"                 android:title="הגשת בקשה חדשה"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/MyRequests"
+                android:icon="@android:drawable/ic_menu_agenda"                 android:title="הבקשות שלי"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/LogOut"
+                android:icon="@android:drawable/ic_lock_power_off"                 android:title="התנתקות"
+                app:showAsAction="never"/>
+        </menu>
+
+    </item>
+
+</menu>
