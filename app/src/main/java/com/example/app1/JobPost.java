@@ -1,6 +1,10 @@
 package com.example.app1;
 
 public class JobPost {
+    public static final int VISIBLE = 1;
+    public static final int INVISIBLE = -1;
+
+
     private String age;
     private String region;
     private String city;
@@ -11,6 +15,8 @@ public class JobPost {
     private String additionalInfo;
     private String phone;
     private String postKey; // لتحديد صاحب المنشور
+
+    private int postStatus; //  visible ,  invisible
 
     public JobPost() {} // Firebase يحتاج الكونستركتور الفارغ
 
@@ -26,6 +32,7 @@ public class JobPost {
         this.additionalInfo = additionalInfo;
         this.phone = phone;
         this.postKey = postId;
+        this.postStatus = VISIBLE;
 
     }
 
@@ -107,5 +114,11 @@ public class JobPost {
 
     public void setPostKey(String postKey) {
         this.postKey = postKey;
+    }
+    public void setPostStatus(int postStatus){
+        this.postStatus = postStatus;
+    }
+    public int getPostStatus(){
+        return this.postStatus;
     }
 }

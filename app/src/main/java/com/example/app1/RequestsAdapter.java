@@ -14,12 +14,14 @@ import java.util.ArrayList;
 
 public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHolder> {
 
-    ArrayList<RequestModel> list;
-    Context context;
+    private ArrayList<RequestModel> list;
+    private Context context;
+    private OnRecyclerItemClickListener listener;
 
     public RequestsAdapter(ArrayList<RequestModel> list, Context context) {
         this.list = list;
         this.context = context;
+        listener = (MyRequestsActivity)context;
     }
 
     @NonNull
@@ -64,8 +66,10 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
             removePost.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MyRequestsActivity myRequestsActivity = (MyRequestsActivity)context;
-                    myRequestsActivity.delete(getBindingAdapterPosition());
+                    int position = getBindingAdapterPosition();
+                    if( position != RecyclerView.NO_POSITION ) {
+                        listener.delete(position);
+                    }
                 }
             });
 

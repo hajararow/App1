@@ -23,7 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 // استورد RequestsAdapter و RequestModel حسب مكان تواجدهم في مشروعك
 
 
-public class MyRequestsActivity extends AppCompatActivity implements PostMethods{
+public class MyRequestsActivity extends AppCompatActivity implements OnRecyclerItemClickListener {
 
     RecyclerView recyclerView;
     RequestsAdapter adapter;
@@ -71,14 +71,14 @@ public class MyRequestsActivity extends AppCompatActivity implements PostMethods
     public void delete(int position) {
         String uid = FBRef.refAuth.getUid();
         RequestModel requestModel = list.get(position);
-        Log.d("AAAAAAAA",requestModel.getAge() + " "+requestModel.getPostKey());
 
         FBRef.refPosts.child(uid).child(requestModel.getPostKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     list.remove(position);
-                    adapter.notifyDataSetChanged();
+                    adapter.notifyItemRemoved(position);
+
                 }
 
             }

@@ -9,7 +9,7 @@ public class RequestModel {
 
     public RequestModel() {} // فارغ للكود
 
-    public RequestModel(String specificJob, String city, String hourlyRate, String age,String Key) {
+    public RequestModel(String specificJob, String city, String hourlyRate, String age,String postKey) {
         this.specificJob = specificJob;
         this.city = city;
         this.hourlyRate = hourlyRate;
