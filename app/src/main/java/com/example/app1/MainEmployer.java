@@ -283,10 +283,17 @@ public class MainEmployer extends AppCompatActivity {
                 FBRef.refPosts.child(uid).child(postKey).setValue(jobPost).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                            Log.d(TAG,"Post added...");
-                        else
-                            Log.d(TAG,"Error writing to firebase");
+                        if(task.isSuccessful()) {
+                            // إظهار رسالة نجاح
+                            Toast.makeText(MainEmployer.this, "הבקשה פורסמה בהצלחה!", Toast.LENGTH_SHORT).show();
+
+                            // الانتقال إلى صفحة MyRequestsActivity
+                            Intent intent = new Intent(MainEmployer.this, MyRequestsActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(MainEmployer.this, "אירעה שגיאה בפרסום הבקשה", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

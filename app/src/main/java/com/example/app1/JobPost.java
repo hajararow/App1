@@ -16,8 +16,6 @@ public class JobPost {
     private String phone;
     private String postKey; // لتحديد صاحب المنشور
 
-    private int postStatus; //  visible ,  invisible
-
     public JobPost() {} // Firebase يحتاج الكونستركتور الفارغ
 
     public JobPost(String age, String region, String city, String jobType, String hourlyRate,
@@ -32,7 +30,6 @@ public class JobPost {
         this.additionalInfo = additionalInfo;
         this.phone = phone;
         this.postKey = postId;
-        this.postStatus = VISIBLE;
 
     }
 
@@ -114,11 +111,5 @@ public class JobPost {
 
     public void setPostKey(String postKey) {
         this.postKey = postKey;
-    }
-    public void setPostStatus(int postStatus){
-        this.postStatus = postStatus;
-    }
-    public int getPostStatus(){
-        return this.postStatus;
     }
 }

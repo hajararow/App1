@@ -38,7 +38,7 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
         holder.specificJob.setText("תפקיד: " + model.getSpecificJob());
         holder.city.setText("מיקום: " + model.getCity());
         holder.hourlyRate.setText("שכר לשעה: " + model.getHourlyRate());
-        holder.age.setText("פרטים נוספים: " + model.getAge());
+        holder.age.setText("גיל העובד: " + model.getAge());
 
 
     }
