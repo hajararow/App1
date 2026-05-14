@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_more"
+        android:icon="@android:drawable/ic_menu_more"
+        android:title="More"
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/Job_search"
+                android:icon="@android:drawable/ic_menu_search"
+                android:title="חיפוש משרה"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/Favorite_jobs"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="משרות מועדפות"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/LogOut"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="התנתקות"
+                app:showAsAction="never" />
+
+        </menu>
+
+    </item>
+
+</menu>

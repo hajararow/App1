@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +33,7 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder,int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         RequestModel model = list.get(position);
 
         holder.specificJob.setText("תפקיד: " + model.getSpecificJob());
@@ -40,7 +41,23 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
         holder.hourlyRate.setText("שכר לשעה: " + model.getHourlyRate());
         holder.age.setText("גיל העובד: " + model.getAge());
 
+        // 👇 هذا هو الجزء الجديد
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RequestDetailsActivity.class);
 
+            intent.putExtra("specificJob", model.getSpecificJob());
+            intent.putExtra("city", model.getCity());
+            intent.putExtra("rate", model.getHourlyRate());
+            intent.putExtra("age", model.getAge());
+
+            intent.putExtra("region", model.getRegion());
+            intent.putExtra("jobType", model.getJobType());
+            intent.putExtra("field", model.getField());
+            intent.putExtra("info", model.getInfo());
+            intent.putExtra("phone", model.getPhone());
+
+            context.startActivity(intent);
+        });
     }
 
     @Override
