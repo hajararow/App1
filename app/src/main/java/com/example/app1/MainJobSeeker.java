@@ -97,14 +97,20 @@ public class MainJobSeeker extends AppCompatActivity {
         setUpSpinner(spinnerJobField, jobFieldOptions);
         setUpSpinner(spinnerSpecificJob, specificJobOptions);
 
+
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("aaaaa",spinnerAge.getSelectedItem().toString() + "");
+
 
                 Intent intent = new Intent(
                         MainJobSeeker.this,
                         SearchResultsActivity.class
                 );
+
+                intent.putExtra("Age",spinnerAge.getSelectedItem().toString() + "");
 
                 startActivity(intent);
             }

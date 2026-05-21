@@ -1,5 +1,6 @@
 package com.example.app1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,9 @@ public class SearchResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
+
+        Intent intent = getIntent();
+        String age = intent.getStringExtra("Age");
 
         recyclerJobs = findViewById(R.id.recyclerJobs);
 
