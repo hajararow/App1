@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,19 +18,24 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent" />
 
         <!-- الكارد الرئيسي -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginBottom="16dp"
             app:strokeColor="#0D47A1"
             app:strokeWidth="2dp"
             app:cardCornerRadius="12dp"
             app:contentPadding="16dp"
             android:background="#FFFFFF">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -139,9 +144,9 @@
                             android:id="@+id/spinner_city"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:spinnerMode="dropdown"
                             android:backgroundTint="#0D47A1"
-                            android:padding="8dp"/>
+                            android:padding="8dp"
+                            android:spinnerMode="dropdown" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -253,9 +258,11 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+            </LinearLayout>
 
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+            </ScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- زر البحث بعد التعديل -->
         <Button
@@ -270,4 +277,4 @@
             android:layout_marginTop="16dp"/>
 
     </LinearLayout>
-</ScrollView>
+</LinearLayout>
