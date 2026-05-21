@@ -111,6 +111,14 @@ public class MainJobSeeker extends AppCompatActivity {
                 );
 
                 intent.putExtra("Age",spinnerAge.getSelectedItem().toString() + "");
+                intent.putExtra("Region",spinnerRegion.getSelectedItem().toString() + "");
+                intent.putExtra("City",spinnerCity.getSelectedItem().toString() + "");
+                intent.putExtra("JobType",spinnerJobType.getSelectedItem().toString() + "");
+                intent.putExtra("JobField",spinnerJobField.getSelectedItem().toString() + "");
+                intent.putExtra("SpecificJob",spinnerSpecificJob.getSelectedItem().toString() + "");
+
+
+
 
                 startActivity(intent);
             }

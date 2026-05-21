@@ -31,6 +31,12 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String age = intent.getStringExtra("Age");
+        String region = intent.getStringExtra("Region");
+        String city = intent.getStringExtra("City");
+        String jobType = intent.getStringExtra("JobType");
+        String jobField = intent.getStringExtra("JobField");
+        String specificJob = intent.getStringExtra("SpecificJob");
+
 
         recyclerJobs = findViewById(R.id.recyclerJobs);
 

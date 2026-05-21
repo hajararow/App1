@@ -34,7 +34,6 @@
                 android:id="@+id/text_specific_job"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="תפקיד: מפתח תוכנה"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#212121"/>
@@ -43,7 +42,6 @@
                 android:id="@+id/text_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="מיקום: תל אביב"
                 android:textSize="15sp"
                 android:textColor="#666666"
                 android:layout_marginTop="4dp"/>
@@ -52,7 +50,6 @@
                 android:id="@+id/text_hourly_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="שכר לשעה: 50₪"
                 android:textSize="15sp"
                 android:textColor="#666666"
                 android:layout_marginTop="4dp"/>
@@ -61,7 +58,6 @@
                 android:id="@+id/text_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="גיל העובד: 25"
                 android:textSize="14sp"
                 android:textColor="#999999"
                 android:layout_marginTop="6dp"/>

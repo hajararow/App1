@@ -36,6 +36,10 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
 
         holder.text1.setText(job.getSpecificJob());
         holder.text2.setText(job.getCity());
+        holder.text3.setText(job.getHourlyRate());
+        holder.text4.setText(job.getAge());
+
+
 
         holder.favorite.setOnClickListener(v -> {
 
@@ -61,7 +65,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
 
     public static class JobViewHolder extends RecyclerView.ViewHolder {
 
-        TextView text1, text2;
+        TextView text1, text2, text3, text4;
         ImageView favorite;
 
         boolean isLiked = false;
@@ -71,6 +75,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
 
             text1 = itemView.findViewById(R.id.text_specific_job);
             text2 = itemView.findViewById(R.id.text_city);
+            text3 = itemView.findViewById(R.id.text_hourly_rate);
+            text4 = itemView.findViewById(R.id.text_age);
 
             favorite = itemView.findViewById(R.id.image_favorite);
         }
