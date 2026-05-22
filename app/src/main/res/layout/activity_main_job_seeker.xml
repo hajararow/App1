@@ -28,10 +28,11 @@
             android:layout_weight="1"
             android:layout_marginBottom="16dp"
             app:strokeColor="#0D47A1"
+            app:cardBackgroundColor="#F3EDF7"
             app:strokeWidth="2dp"
             app:cardCornerRadius="12dp"
             app:contentPadding="16dp"
-            android:background="#FFFFFF">
+            android:background="#ECE6F4FF">
 
             <ScrollView
                 android:layout_width="match_parent"

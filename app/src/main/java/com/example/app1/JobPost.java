@@ -15,11 +15,14 @@ public class JobPost {
     private String additionalInfo;
     private String phone;
     private String postKey; // لتحديد صاحب المنشور
+    private boolean favorite;
+    private String postId;
+
 
     public JobPost() {} // Firebase يحتاج الكونستركتور الفارغ
 
     public JobPost(String age, String region, String city, String jobType, String hourlyRate,
-                   String jobField, String specificJob, String additionalInfo, String phone, String postId) {
+                   String jobField, String specificJob, String additionalInfo, String phone, String postKey) {
         this.age = age;
         this.region = region;
         this.city = city;
@@ -29,7 +32,7 @@ public class JobPost {
         this.specificJob = specificJob;
         this.additionalInfo = additionalInfo;
         this.phone = phone;
-        this.postKey = postId;
+        this.postKey = postKey;
 
     }
 
@@ -105,11 +108,18 @@ public class JobPost {
         this.phone = phone;
     }
 
-    public String getPostKey() {
-        return postKey;
-    }
+    public String getPostKey() {return postKey;}
 
     public void setPostKey(String postKey) {
         this.postKey = postKey;
     }
+
+    public boolean isFavorite() {return favorite;}
+
+    public void setFavorite(boolean favorite) {this.favorite = favorite;}
+
+    public String getPostId() {return postId;}
+
+    public void setPostId(String postId) {this.postId = postId;}
+
 }

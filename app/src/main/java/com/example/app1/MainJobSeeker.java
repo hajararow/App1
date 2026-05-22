@@ -44,7 +44,7 @@ public class MainJobSeeker extends AppCompatActivity {
         }
 
         if (id == R.id.Favorite_jobs) {
-            Intent intent = new Intent(this, SearchResultsActivity.class);
+            Intent intent = new Intent(this, favoritePostsActivity.class);
             startActivity(intent);
             return true;
         }

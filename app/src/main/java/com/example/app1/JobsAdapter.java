@@ -9,14 +9,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder> {
 
     ArrayList<JobPost> list;
 
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+
+    // نخزن المفضلات من Firebase
+    HashSet<String> favoriteSet = new HashSet<>();
+
     public JobsAdapter(ArrayList<JobPost> list) {
         this.list = list;
+
+        // ⭐ مهم جداً: تشغيل تحميل المفضلات
+        loadFavorites();
     }
 
     @NonNull
@@ -39,22 +53,46 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
         holder.text3.setText(job.getHourlyRate());
         holder.text4.setText(job.getAge());
 
+        String postId = job.getPostId();
 
+        // ⭐ عرض القلب حسب Firebase (مش فقط local)
+        boolean isFav = favoriteSet.contains(postId);
+        holder.favorite.setImageResource(
+                isFav ? R.drawable.interested_icon : R.drawable.not_interested_icon
+        );
 
         holder.favorite.setOnClickListener(v -> {
 
-            if (holder.isLiked) {
+            int pos = holder.getAdapterPosition();
+            if (pos == RecyclerView.NO_POSITION) return;
 
-                holder.favorite.setImageResource(R.drawable.not_interested_icon);
-                holder.isLiked = false;
+            JobPost currentJob = list.get(pos);
+
+            String userId = auth.getCurrentUser().getUid();
+            String jobId = currentJob.getPostId();
+
+            boolean currentlyFav = favoriteSet.contains(jobId);
+
+            if (!currentlyFav) {
+
+                FBRef.refFavorites
+                        .child(userId)
+                        .child(jobId)
+                        .setValue(true);
+
+                favoriteSet.add(jobId);
 
             } else {
 
-                holder.favorite.setImageResource(R.drawable.interested_icon);
-                holder.isLiked = true;
+                FBRef.refFavorites
+                        .child(userId)
+                        .child(jobId)
+                        .removeValue();
 
+                favoriteSet.remove(jobId);
             }
 
+            notifyItemChanged(pos);
         });
     }
 
@@ -68,8 +106,6 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
         TextView text1, text2, text3, text4;
         ImageView favorite;
 
-        boolean isLiked = false;
-
         public JobViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -80,5 +116,31 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
 
             favorite = itemView.findViewById(R.id.image_favorite);
         }
+    }
+
+    // =========================
+    // تحميل المفضلات من Firebase
+    // =========================
+    private void loadFavorites() {
+
+        String userId = auth.getCurrentUser().getUid();
+
+        FBRef.refFavorites.child(userId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        favoriteSet.clear();
+
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            favoriteSet.add(ds.getKey());
+                        }
+
+                        notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {}
+                });
     }
 }

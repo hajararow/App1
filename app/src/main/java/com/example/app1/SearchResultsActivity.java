@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,18 +25,42 @@ public class SearchResultsActivity extends AppCompatActivity {
 
     JobsAdapter adapter;
 
+    String age;
+    String region;
+    String city;
+    String jobType;
+    String jobField;
+    String specificJob;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true); // سهم الرجوع
+            getSupportActionBar().setDisplayShowTitleEnabled(false); // بدون عنوان
+        }
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
         Intent intent = getIntent();
-        String age = intent.getStringExtra("Age");
-        String region = intent.getStringExtra("Region");
-        String city = intent.getStringExtra("City");
-        String jobType = intent.getStringExtra("JobType");
-        String jobField = intent.getStringExtra("JobField");
-        String specificJob = intent.getStringExtra("SpecificJob");
+        age = intent.getStringExtra("Age");
+        region = intent.getStringExtra("Region");
+        city = intent.getStringExtra("City");
+        jobType = intent.getStringExtra("JobType");
+        jobField = intent.getStringExtra("JobField");
+        specificJob = intent.getStringExtra("SpecificJob");
 
 
         recyclerJobs = findViewById(R.id.recyclerJobs);
@@ -63,7 +88,17 @@ public class SearchResultsActivity extends AppCompatActivity {
                     for (DataSnapshot userPosts : ds.getChildren()) {
                         for( DataSnapshot posts : userPosts.getChildren()){
                             JobPost job = posts.getValue(JobPost.class);
-                            list.add(job);
+                            job.setPostId(posts.getKey());
+                            if (job != null &&
+                                    job.getAge().equals(age) &&
+                                    job.getRegion().equals(region) &&
+                                    job.getCity().equals(city) &&
+                                    job.getJobType().equals(jobType) &&
+                                    job.getJobField().equals(jobField) &&
+                                    job.getSpecificJob().equals(specificJob)) {
+
+                                list.add(job);
+                            }
                         }
                     }
                     adapter.notifyDataSetChanged();
