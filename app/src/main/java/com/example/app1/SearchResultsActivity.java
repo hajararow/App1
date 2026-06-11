@@ -108,32 +108,5 @@ public class SearchResultsActivity extends AppCompatActivity {
             }
 
         });
-
-
-
-
-
-//        FBRef.refPosts.addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                list.clear();
-//
-//                for (DataSnapshot data : snapshot.getChildren()) {
-//
-//                    JobPost job = data.getValue(JobPost.class);
-//
-//                    if (job != null) {
-//
-//                        list.add(job);
-//                    }
-//                }
-//
-//                adapter.notifyDataSetChanged();
-//            }
-
-
- //       });
     }
 }

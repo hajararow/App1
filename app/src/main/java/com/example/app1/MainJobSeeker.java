@@ -21,6 +21,8 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class MainJobSeeker extends AppCompatActivity {
 
@@ -39,13 +41,14 @@ public class MainJobSeeker extends AppCompatActivity {
         if (id == R.id.Job_search) {
                 Intent intent = new Intent(this, MainJobSeeker.class);
             startActivity(intent);
-            finish();
             return true;
         }
 
         if (id == R.id.Favorite_jobs) {
+
             Intent intent = new Intent(this, favoritePostsActivity.class);
             startActivity(intent);
+
             return true;
         }
 

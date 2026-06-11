@@ -1,5 +1,6 @@
 package com.example.app1;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,22 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
     @Override
     public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
 
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), RequestDetailsActivity.class);
+
+            intent.putExtra("age", list.get(position).getAge());
+            intent.putExtra("region", list.get(position).getRegion());
+            intent.putExtra("city", list.get(position).getCity());
+            intent.putExtra("jobType", list.get(position).getJobType());
+            intent.putExtra("rate", list.get(position).getHourlyRate());
+            intent.putExtra("field", list.get(position).getJobField());
+            intent.putExtra("specificJob", list.get(position).getSpecificJob());
+            intent.putExtra("info", list.get(position).getAdditionalInfo());
+            intent.putExtra("phone", list.get(position).getPhone());
+
+            v.getContext().startActivity(intent);
+        });
+
         JobPost job = list.get(position);
 
         holder.text1.setText(job.getSpecificJob());
@@ -62,6 +79,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.JobViewHolder>
         );
 
         holder.favorite.setOnClickListener(v -> {
+
+
 
             int pos = holder.getAdapterPosition();
             if (pos == RecyclerView.NO_POSITION) return;

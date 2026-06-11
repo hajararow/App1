@@ -34,30 +34,29 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), RequestDetailsActivity.class);
+
+            intent.putExtra("age", list.get(position).getAge());
+            intent.putExtra("region", list.get(position).getRegion());
+            intent.putExtra("city", list.get(position).getCity());
+            intent.putExtra("jobType", list.get(position).getJobType());
+            intent.putExtra("rate", list.get(position).getHourlyRate());
+            intent.putExtra("field", list.get(position).getField());
+            intent.putExtra("specificJob", list.get(position).getSpecificJob());
+            intent.putExtra("info", list.get(position).getInfo());
+            intent.putExtra("phone", list.get(position).getPhone());
+
+            v.getContext().startActivity(intent);
+        });
+
         RequestModel model = list.get(position);
 
         holder.specificJob.setText("תפקיד: " + model.getSpecificJob());
         holder.city.setText("מיקום: " + model.getCity());
         holder.hourlyRate.setText("שכר לשעה: " + model.getHourlyRate());
         holder.age.setText("גיל העובד: " + model.getAge());
-
-        // 👇 هذا هو الجزء الجديد
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, RequestDetailsActivity.class);
-
-            intent.putExtra("specificJob", model.getSpecificJob());
-            intent.putExtra("city", model.getCity());
-            intent.putExtra("rate", model.getHourlyRate());
-            intent.putExtra("age", model.getAge());
-
-            intent.putExtra("region", model.getRegion());
-            intent.putExtra("jobType", model.getJobType());
-            intent.putExtra("field", model.getField());
-            intent.putExtra("info", model.getInfo());
-            intent.putExtra("phone", model.getPhone());
-
-            context.startActivity(intent);
-        });
     }
 
     @Override
